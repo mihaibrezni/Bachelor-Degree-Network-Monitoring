@@ -1,0 +1,10 @@
+# https://medium.com/@tech_18484/securing-and-authenticating-metric-data-in-transit-implementing-tls-and-authentication-for-682aed46e450
+tls_server_config:
+  cert_file: /etc/prometheus/certs/monitoring.crt # your-path
+  key_file: /etc/prometheus/certs/monitoring.key  # the same
+
+basic_auth_users:
+  # https://o11y.tools/pwgen/      
+  # admin: ${HASH_PASSWORD_PROMETHEUS}
+  admin: $2a$10$xvzG0J51sONxEzA3YD8AqOSmHP4cEvsyr.hLGOHGsuwBnHI5joPE6 
+ 

@@ -1,0 +1,59 @@
+---
+auths:
+   public_v3:
+      version: 3
+      community: public_v3
+      username: snmp-monitor
+      security_level: authPriv
+      auth_protocol: SHA
+      password: YOUR_PASSWORD
+      priv_protocol: AES
+      priv_password: YOUR_PRIVATE-PASSWORD
+      # YOUR_PRIVATE-PASSWORD and OUR_PASSWOR are totaly diferrent
+modules:
+    cerberis3_qkd_node:
+      walk:
+        - neIndex
+        - neType
+        - neIpAddress
+        - neSerialNumber
+        - neSwVersion
+        - neSysUptime
+        - neCpuLoad
+        - neMemUsage
+        - neTemperature
+        - neFanState
+        - nePowerSupplyState
+        - neOperationalState
+        - qkdNE
+        - qkdState
+        - qkdCompressionRatio
+        - qkdLaserPower
+        - qkdQber
+        - qkdVisibility
+        - qkdKeyRate
+        - qkdTotalDetectionCount
+          #infrastructure:
+          #walk:
+          #- sysDescr
+          #- sysUpTime
+          #- sysName
+          #- ifNumber
+          #- ifIndex
+          #- ifType
+          #- ifSpeed
+          #- ifHighSpeed
+          #- ifAlias
+          #- ifOperStatus
+          #- ifInDiscards
+          #- ifInErrors
+          #- ifOutDiscards
+          #- ifOutErrors
+          #- ifName
+          #- ifInOctets
+          #- ifOutOctets
+          #- ifHCInOctets
+          #- ifHCOutOctets
+          #- entPhysicalIndex
+          #- entPhysicalName
+

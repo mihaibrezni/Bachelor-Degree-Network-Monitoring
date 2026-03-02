@@ -1,0 +1,63 @@
+---
+# my global config
+global:
+  # scrape_interval: 30s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 30s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+  scrape_timeout: 10s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - scheme: http
+    - static_configs:
+        - targets:
+          - "localhost:9093"
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+  - alerting_rules.yml
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "snmp-exporter-cerberis3"
+    scheme: http
+    basic_auth:
+      username: ${ADMIN_PROMETHEUS}
+      password: ${PASSWORD_PROMETHEUS}
+    tls_config:
+      cert_file: /etc/prometheus/certs/monitoring.crt
+      key_file: /etc/prometheus/certs/monitoring.key
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    static_configs:
+      - targets:
+        # regex-pattern:
+        # 172.20.250.[12][12]
+        - 172.20.250.11
+        - 172.20.250.12
+        - 172.20.250.21
+        - 172.20.250.22
+    metrics_path: "/snmp"
+    params:
+      auth: [public_v3]
+      module: [cerberis3_qkd_node]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: [__param_module]
+        target_label: module
+      - target_label: __address__
+        replacement: localhost:9116
+
+remote_write:
+  - url: "http://localhost:9009/api/v1/push"
+    name: mimir
+    remote_timeout: 30s
+        
