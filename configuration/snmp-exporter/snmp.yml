@@ -1,0 +1,204 @@
+---
+# WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
+auths:
+  public_v3:
+    security_level: authPriv
+    username: ${USERNAME_SNMP}
+    password: ${PASSWORD_SNMP}
+    priv_password: ${PRIVATE_PASSWORD_SNMP}
+    auth_protocol: SHA
+    priv_protocol: AES
+    version: 3
+modules:
+  cerberis3_qkd_node:
+    walk:
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.1
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.10
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.11
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.12
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.2
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.3
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.4
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.5
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.6
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.7
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.8
+    - 1.3.6.1.4.1.22328.2.1.1.1.1.9
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.1
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.2
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.3
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.4
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.5
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.6
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.7
+    - 1.3.6.1.4.1.22328.2.1.2.1.1.8
+    metrics:
+    - name: neIndex
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.1
+      type: gauge
+      help: The index uniquely identifies the network element in the context of the
+        Cerberis3 QKD Node. - 1.3.6.1.4.1.22328.2.1.1.1.1.1
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: neFanState
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.10
+      type: gauge
+      help: The NE's fans state. - 1.3.6.1.4.1.22328.2.1.1.1.1.10
+      indexes:
+      - labelname: neIndex
+        type: gauge
+      enum_values:
+        0: unhealthy
+        1: healthy
+    - name: nePowerSupplyState
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.11
+      type: gauge
+      help: The NE's power supply state. - 1.3.6.1.4.1.22328.2.1.1.1.1.11
+      indexes:
+      - labelname: neIndex
+        type: gauge
+      enum_values:
+        0: unhealthy
+        1: healthy
+    - name: neOperationalState
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.12
+      type: gauge
+      help: The NE's operational state. - 1.3.6.1.4.1.22328.2.1.1.1.1.12
+      indexes:
+      - labelname: neIndex
+        type: gauge
+      enum_values:
+        0: inactive
+        1: active
+    - name: neType
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.2
+      type: gauge
+      help: These are the types of the network elements. - 1.3.6.1.4.1.22328.2.1.1.1.1.2
+      indexes:
+      - labelname: neIndex
+        type: gauge
+      enum_values:
+        1: qnc
+        2: qkd
+    - name: neIpAddress
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.3
+      type: InetAddressIPv4
+      help: The NE's IP address. - 1.3.6.1.4.1.22328.2.1.1.1.1.3
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: neSerialNumber
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.4
+      type: DisplayString
+      help: The NE's serial number. - 1.3.6.1.4.1.22328.2.1.1.1.1.4
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: neSwVersion
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.5
+      type: DisplayString
+      help: The NE's firmware version. - 1.3.6.1.4.1.22328.2.1.1.1.1.5
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: neSysUptime
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.6
+      type: gauge
+      help: The NE's uptime. - 1.3.6.1.4.1.22328.2.1.1.1.1.6
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: neCpuLoad
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.7
+      type: DisplayString
+      help: The NE's CPU load on average during 1 minute. - 1.3.6.1.4.1.22328.2.1.1.1.1.7
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: neMemUsage
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.8
+      type: DisplayString
+      help: The NE's RAM usage. - 1.3.6.1.4.1.22328.2.1.1.1.1.8
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: neTemperature
+      oid: 1.3.6.1.4.1.22328.2.1.1.1.1.9
+      type: DisplayString
+      help: The NE's temperature. - 1.3.6.1.4.1.22328.2.1.1.1.1.9
+      indexes:
+      - labelname: neIndex
+        type: gauge
+    - name: qkdNE
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.1
+      type: gauge
+      help: The identifier of the network element which is unique within a family
+        of network elements (neIndex). - 1.3.6.1.4.1.22328.2.1.2.1.1.1
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+    - name: qkdState
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.2
+      type: gauge
+      help: The QKD system's state. - 1.3.6.1.4.1.22328.2.1.2.1.1.2
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+      enum_values:
+        0: undefined
+        1: error
+        2: update
+        3: bist
+        4: serviceChannelSynchronization
+        5: imPowerOptimization
+        6: gateAlignment
+        7: timebinAlignment
+        8: counterAlignment
+        9: qberMinimization
+        10: visibilityMaximization
+        11: initialAuthentication
+        12: keyExchange
+    - name: qkdCompressionRatio
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.3
+      type: DisplayString
+      help: The QKD system's compression ratio. - 1.3.6.1.4.1.22328.2.1.2.1.1.3
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+    - name: qkdLaserPower
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.4
+      type: DisplayString
+      help: The QKD system's laser power. - 1.3.6.1.4.1.22328.2.1.2.1.1.4
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+    - name: qkdQber
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.5
+      type: DisplayString
+      help: The QKD system's QBER. - 1.3.6.1.4.1.22328.2.1.2.1.1.5
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+    - name: qkdVisibility
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.6
+      type: DisplayString
+      help: The QKD system's visibility. - 1.3.6.1.4.1.22328.2.1.2.1.1.6
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+    - name: qkdKeyRate
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.7
+      type: gauge
+      help: The QKD system's quantum key rate (bits/s). - 1.3.6.1.4.1.22328.2.1.2.1.1.7
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+    - name: qkdTotalDetectionCount
+      oid: 1.3.6.1.4.1.22328.2.1.2.1.1.8
+      type: gauge
+      help: The QKD system's detection count on DATA and MONITOR. - 1.3.6.1.4.1.22328.2.1.2.1.1.8
+      indexes:
+      - labelname: qkdNE
+        type: gauge
+

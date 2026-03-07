@@ -1,0 +1,87 @@
+---
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    user: root
+    container_name: prometheus
+    volumes:
+      - ./prometheus-data/prometheus.logs:/prometheus-data/prometheus.logs
+      - ./prometheus-data/metrics/:/prometheus
+      - ./prometheus-data/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus-data/monitoring.crt:/etc/prometheus/certs/monitoring.crt
+      - ./prometheus-data/monitoring.key:/etc/prometheus/certs/monitoring.key
+      - ./prometheus-data/web.yml:/etc/prometheus/web.yml:ro
+      - ./prometheus-data/alerting_rules.yml:/etc/prometheus/alerting_rules.yml:r
+    env_file:
+      - ./prometheus-data/.env
+    network_mode: host
+    restart: unless-stopped
+    entrypoint: ["sh", "-c"]
+    command:
+      - "--log.level=debug"
+      - "/bin/prometheus --config.file=/etc/prometheus/prometheus.yml --web.config.file=/etc/prometheus/web.yml >> /prometheus-data/prometheus.logs 2>&1"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=72h"
+
+  snmp-exporter:
+    image: prom/snmp-exporter:latest
+    user: root
+    container_name: snmp-exporter
+    volumes:
+      - ./snmp-exporter-data:/snmp-exporter-data
+      - ./snmp-exporter/snmp.yml:/etc/snmp_exporter/snmp.yml:ro
+    env_file:
+      - ./snmp-exporter/.env
+    network_mode: host
+    restart: unless-stopped
+    entrypoint: ["sh", "-c"]
+    command:
+      - "--log.level=debug"
+      - "/bin/snmp_exporter --config.file=/etc/snmp_exporter/snmp.yml --config.expand-environment-variables  >> /snmp-exporter-data/snmp-exporter.logs 2>&1"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    user: root
+    volumes:
+      - ./grafana/grafana.logs:/etc/grafana/grafana.logs
+      - ./grafana/.env:/etc/grafana/.env
+      - ./grafana/data/:/var/lib/grafana/
+      - ./grafana/provisioning/dashboards/:/etc/grafana/provisioning/dashboards/
+      - ./grafana/provisioning/datasources/:/etc/grafana/provisioning/datasources/
+    network_mode: host
+    restart: unless-stopped
+    env_file:
+      - ./grafana/.env 
+    entrypoint: ["sh", "-c"]
+    command:
+      - "/usr/share/grafana/bin/grafana-server >> /etc/grafana/grafana.logs 2>&1"
+  
+  alertmanager:
+    image: prom/alertmanager:latest
+    user: root
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - ./alertmanager/storage:/alertmanager
+      - ./alertmanager/alertmanager.logs:/etc/alertmanager/alertmanager.logs
+    network_mode: host
+    restart: unless-stopped
+    entrypoint: ["sh", "-c"]
+    command:
+      - "--storage.path=/alertmanager"
+      - "/bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml >> /etc/alertmanager/alertmanager.logs 2>&1"
+ 
+  mimir:
+    image: bitnami/grafana-mimir:latest
+    user: root
+    container_name: mimir
+    volumes: 
+      - ./mimir/mimir.yml:/opt/bitnami/mimir/conf/mimir.yml
+      - ./mimir/mimir.logs:/opt/bitnami/mimir/logs/mimir.logs
+      - ./mimir/data:/etc/mimir/
+    network_mode: host
+    restart: unless-stopped
+    entrypoint: ["sh", "-c"]
+    command:
+      - "mimir --config.file=/opt/bitnami/mimir/conf/mimir.yml >> /opt/bitnami/mimir/logs/mimir.logs 2>&1"
