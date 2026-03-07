@@ -1,0 +1,4 @@
+snmpwalk 172.20.250.22 -Of iso.org.dod.internet.private
+curl -ksSL 'https://172.20.250.200/v1/monitor/kms/metrics/UPBP-A2/probe' --cert ~/work/monitoring/prometheus/monitoring.crt --key ~/work/monitoring/prometheus/monitoring.key |& cat -v
+curl -ksSL 'https://172.20.250.200/v1/monitor/kms/metrics/UPBR/probe' --cert ~/work/monitoring/prometheus/monitoring.crt --key ~/work/monitoring/prometheus/monitoring.key |& cat -vw
+curl -ksSL 'https://172.20.250.200/v1/monitor/kms/metrics/prometheus-sd-targets' --cert ~/work/monitoring/prometheus/monitoring.crt --key ~/work/monitoring/prometheus/monitoring.key |& cat -v

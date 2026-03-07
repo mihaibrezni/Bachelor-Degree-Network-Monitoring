@@ -1,0 +1,20 @@
+groups:
+- name: status
+  rules:
+  - alert: status-update
+    expr: |
+      (
+        up{
+          #instance="172.20.250.11",
+          module="cerberis3_qkd_node"
+          } < 1
+      )
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      title: "Status update for {{ $labels.instance }}"
+      description: "Endpoint down"
+
+# multiple rules examples
+# https://github.com/SonDinh5310/ntwrk-mntr/blob/master/prometheus/alert.rules
