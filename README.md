@@ -2,11 +2,11 @@
 
 Hello guys,
 
-This repository contains my **Bachelor Thesis**, developed during my 4th years and as a CERN Summer Student in Geneva.
+This repository contains my **Bachelor Thesis**, developed during my 4th year and as a CERN Summer Student in Geneva.
 
-The thesis focuses on **replicating and analyzing network monitoring mechanisms** used at CERN and applying them to a **QKD (Quantum Key Distribution) network at the University Politehnica of Bucharest (UPB)**.
+The thesis focuses on **replicating and analyzing cloud infrastructure** used at CERN and applying it to a **QKD (Quantum Key Distribution) network at the University Politehnica of Bucharest (UPB)**.
 
-The project combines **network monitoring infrastructure deployment, metric collection, and data interpretation**.
+The project combines **networking, monitoring, infrastructure deployments, metric collection and data interpretation**.
 
 ---
 
@@ -26,7 +26,7 @@ Main objectives:
 
 ## 2 Metrics Interpretation & Analysis
 
-Use collected metrics from **CERN infrastructure** and process them to extract meaningful information about the whole state of the network and aplications health.
+Use collected metrics from **CERN infrastructure** and process them to extract meaningful information about the whole state of the infrastructure and application health.
 
 Main objectives:
 
@@ -48,7 +48,7 @@ Main objectives:
 For a **high-level explanation of the architecture and results**, see the presentation:
 
 👉
-[Thesis Presentation](https://github.com/mihaibrezni/Bachelor-Degree-Network-Monitoring/blob/main/presentation/Mihai-Brezniceanu-Thesis-2025.pdf)
+[Thesis Presentation](https://github.com/mihaibrezni/Bachelor-Degree-Network-Monitoring/blob/main/presentation/Diploma-Project-Presentation-Mihai-Brezniceanu.pdf)
 
 # Technologies Used
 
