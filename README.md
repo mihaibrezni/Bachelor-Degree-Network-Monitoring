@@ -1,4 +1,4 @@
-# Bachelor Thesis: Cluster and network monitoring
+# Bachelor Thesis: Cluster and application monitoring
 
 Hello guys,
 
