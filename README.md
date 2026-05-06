@@ -6,7 +6,7 @@ This repository contains my **Bachelor Thesis**, developed during my 4th year an
 
 The thesis focuses on **replicating and analyzing cloud infrastructure** used at CERN and applying it to a **QKD (Quantum Key Distribution) network at the University Politehnica of Bucharest (UPB)**.
 
-The project combines **networking, monitoring, infrastructure deployments, metric collection and data interpretation**.
+The project combines **networking, monitoring, infrastructure creation,  application deployment, metric collection and data interpretation**.
 
 ---
 
